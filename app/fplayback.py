@@ -3,5 +3,5 @@
 
 
 # returns void
-def playback_wave_file(path_to_file):
-	pass
+def playback_audio_file(path_to_file):
+    pass
