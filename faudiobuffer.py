@@ -1,0 +1,2 @@
+class AudioBuffer():
+	pass

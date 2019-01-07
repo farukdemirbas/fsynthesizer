@@ -1,0 +1,2 @@
+class Envelope():
+	pass

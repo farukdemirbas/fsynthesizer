@@ -1,11 +1,15 @@
 import platform
+
 OPERATING_SYSTEM = platform.system()
 
 SAMPLE_RATE = 48000
 
+ENVELOPE = []
+
 # Frequency values (in Hz) for each note, where A4: 440 Hz
 # source: http://pages.mtu.edu/~suits/notefreqs.html
 FREQ = {
+	"" :	0,
 	"C0":	16.35,
 	"C#0":	17.32,
 	"Db0":	17.32,
