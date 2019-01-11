@@ -2,8 +2,9 @@
 text file storing musical information in our designated format
 """
 from fglobals import FREQ  # frequency for each note
+from faudiobuffer import AudioBuffer
 
-buffer = []  # in memory
+buffer = AudioBuffer()  # in memory
 
 
 def generate_audio_file(notes_file):

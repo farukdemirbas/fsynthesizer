@@ -7,12 +7,19 @@ SAMPLE_RATE = 44100  # 44100 samples per second of audio.
 
 SAMPLE_WIDTH = 2  # 2 bytes (16 bits) for each sample.
 
+# Define maximum value for each sample based on the sample width.
+# But scale it to 0.9 as a safety cushion.
+# Because audio effects may push the amplitude above the limit.
+# At sample width == 2, (aka 16 bits), the range is 32768.
+# With the 0.9 scaler, it's trimmed down to 29491.
+MAX_AMPLITUDE = int(0.9 * (2 ** (SAMPLE_WIDTH * 8)) / 2)  # /2 because signed.
+
 ENVELOPE = Envelope()
 
 # Frequency values (in Hz) for each note, where A4: 440 Hz
 # source: http://pages.mtu.edu/~suits/notefreqs.html
 FREQ = {
-	"" :	0,
+	"-" :	0,
 	"C0":	16.35,
 	"C#0":	17.32,
 	"Db0":	17.32,
