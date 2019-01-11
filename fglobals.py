@@ -1,10 +1,13 @@
 import platform
+from fenvelope import Envelope
 
 OPERATING_SYSTEM = platform.system()
 
-SAMPLE_RATE = 48000
+SAMPLE_RATE = 44100  # 44100 samples per second of audio.
 
-ENVELOPE = []
+SAMPLE_WIDTH = 2  # 2 bytes (16 bits) for each sample.
+
+ENVELOPE = Envelope()
 
 # Frequency values (in Hz) for each note, where A4: 440 Hz
 # source: http://pages.mtu.edu/~suits/notefreqs.html
