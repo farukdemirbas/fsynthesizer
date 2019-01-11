@@ -13,5 +13,5 @@ A learning project. No external dependencies required.
 
 Version 1.0 planned to be implemented [by the start of Summer 2019], and will be like described below.
 
-**fsynthesizer is (going to become) a program that functions quite like how a typical synthesizer does.**
-It will be GUI application that allows real-time recording (via a typical or MIDI keyboard) and sound processing. MIDI import will be supported. The user will create their own envelopes, signal shapes, harmonics, sound effects and so on. They will then be able to save their custom effects, akin to a VST Instrument. Most widely used music file extensions will be supported in generating an output file.
+**fsynthesizer is (going to become) a program that functions quite like a typical synthesizer.**
+It will be a GUI application that allows real-time recording (via a normal or MIDI keyboard) and sound processing. MIDI import will be supported. The user will create their own envelopes, signal shapes, harmonics, sound effects and so on. They will then also be able to save their custom effects. Most widely used music file extensions will be supported in generating an output file.
