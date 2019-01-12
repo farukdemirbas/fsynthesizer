@@ -1,5 +1,6 @@
-from fglobals import FREQ
-from faudiobuffer import AudioBuffer, Sinusoid
+from globals import FREQ
+from audiobuffer import AudioBuffer
+from elementary import Sinusoid
 
 
 class Note():

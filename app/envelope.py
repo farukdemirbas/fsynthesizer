@@ -1,4 +1,4 @@
-from faudiobuffer import Line
+from elementary import Line
 
 
 class Envelope():
