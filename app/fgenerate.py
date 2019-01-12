@@ -1,7 +1,7 @@
 """Functions to generate an actual playable audio file from a
 text file storing musical information in our designated format
 """
-from fglobals import FREQ  # frequency for each note
+
 from faudiobuffer import AudioBuffer
 
 buffer = AudioBuffer()  # in memory

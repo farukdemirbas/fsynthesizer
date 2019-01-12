@@ -1,5 +1,4 @@
 import platform
-from fenvelope import Envelope
 
 OPERATING_SYSTEM = platform.system()
 
@@ -13,8 +12,6 @@ SAMPLE_WIDTH = 2  # 2 bytes (16 bits) for each sample.
 # At sample width == 2, (aka 16 bits), the range is 32768.
 # With the 0.9 scaler, it's trimmed down to 29491.
 MAX_AMPLITUDE = int(0.9 * (2 ** (SAMPLE_WIDTH * 8)) / 2)  # /2 because signed.
-
-ENVELOPE = Envelope()
 
 # Frequency values (in Hz) for each note, where A4: 440 Hz
 # source: http://pages.mtu.edu/~suits/notefreqs.html
