@@ -10,8 +10,8 @@ class Note():
 	a result of various Sound FX like echo and the envelope's release.
 	"""
 
-	def __init__(self, note, duration, envelope=None,
-				volume=0.5, echo=False, echo_delay=50, echo_intensity=0.5):
+	def __init__(self, note, duration, volume=0.5, envelope=None,
+				echo=False, echo_delay=50, echo_intensity=0.5):
 		self.main_buffer = AudioBuffer()  # to hold the final sound of note
 		self.raw_buffer = None  # to hold unprocessed note signal
 		self.note = note

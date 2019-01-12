@@ -3,23 +3,18 @@ text file storing musical information in our designated format
 """
 
 from faudiobuffer import AudioBuffer
+from fparse import parse_notes
 
 buffer = AudioBuffer()  # in memory
 
 
-def generate_audio_file(notes_file):
+def generate_audio_file(song_file):
 	# a 'track' is a monophonic sequence of notes
-	tracks = parse_notes(notes_file)
+	tracks = parse_notes(song_file)
 	for track in tracks:
 		record_onto_buffer(track, buffer)
 	audio_file_path = write_to_wav_file(buffer)
 	return audio_file_path
-
-
-def parse_notes(notes_file):
-	tracks = [[]]  # each track is a list
-	# ...
-	return tracks
 
 
 def record_onto_buffer(notes, buffer):
