@@ -33,6 +33,11 @@ class Envelope():
 	
 	def __init__(self, attack_end, attack_time, decay_end,
 								decay_time, release_time=40):
+		self.attack_end = attack_end
+		self.attack_time = attack_time
+		self.decay_end = decay_end
+		self.decay_time = decay_time
+		self.release_time = release_time
 
 		# a Line that starts at 0, ends at attack_end,
 		# and takes attack_time amount of time in milliseconds.
@@ -93,3 +98,8 @@ class Envelope():
 		tail_applied = tail.multiply(self.release)
 
 		return body_applied + tail_applied
+
+
+example_envelopes = {
+	"0": Envelope(1, 20, 0.75, 40, 50)
+}

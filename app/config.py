@@ -13,6 +13,15 @@ SAMPLE_WIDTH = 2  # 2 bytes (16 bits) for each sample.
 # With the 0.9 scaler, it's trimmed down to 29491.
 MAX_AMPLITUDE = int(0.9 * (2 ** (SAMPLE_WIDTH * 8)) / 2)  # /2 because signed.
 
+# Hand-picked value for our custom musical notation format.
+# "Durations" (which are arbitrary, since the user does not enter milliseconds)
+# will be multiplied by this value to give the Notes their durations in millis.
+# 5 was selected arbitrarily: a Note of 400 user-length corresponds to 2000 ms.
+# 2000 ms is how long 1 bar takes at 120 bpm.
+# This mess will later be remedied when musical input is completely reformed,
+# (aka when we start taking MIDI files as input)
+DURATION_MULTIPLIER = 5
+
 # Frequency values (in Hz) for each note, where A4: 440 Hz
 # source: http://pages.mtu.edu/~suits/notefreqs.html
 FREQ = {

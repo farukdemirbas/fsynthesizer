@@ -1,5 +1,4 @@
-import math
-from globals import SAMPLE_RATE, SAMPLE_WIDTH
+from config import SAMPLE_RATE
 
 
 class AudioBuffer(list):
@@ -60,22 +59,3 @@ class AudioBuffer(list):
 				result.append(el * other)
 
 		return result
-
-
-class SongBuffer(AudioBuffer):
-
-	def __init__(self, *args, **kwargs):
-		super(SongBuffer, self).__init__(*args, **kwargs)
-
-		# list of Track objects
-		self.tracks = []
-
-	def addTrack(self, track):
-		self.tracks.append(track)
-
-	def makeSong(self, tracks):
-		pass
-
-	def writeToWav(self):
-		# return path to wav file
-		pass

@@ -1,5 +1,5 @@
 ---
-#[Currently in non-working condition.]
+[Currently in non-working condition.]
 ---
 
 A learning project. No external dependencies required.

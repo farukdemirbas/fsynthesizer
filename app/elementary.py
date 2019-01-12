@@ -1,3 +1,4 @@
+import math
 from audiobuffer import AudioBuffer
 
 class Sinusoid(AudioBuffer):
@@ -42,7 +43,7 @@ class Line(AudioBuffer):
 	Day will yield the night, you'll ponder in moonshine
 
 	Then, a flash of brilliance, you will recombine
-	The memories of yonder, of your past deeds divine!
+	the memories of yonder, of your past deeds divine!
 	Your eyes will shine, bathed in all emotions benign
 
 	In immense relief, you'll be sighin':
