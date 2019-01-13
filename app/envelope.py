@@ -1,4 +1,5 @@
 from elementary import Line
+from audiobuffer import AudioBuffer
 
 
 class Envelope():
@@ -58,8 +59,8 @@ class Envelope():
 	def apply(self, note):
 		sr = Line.sample_rate
 		target = note.main_buffer
-		tail_length = note.tail_length
-		tail_start_index = len(target) - sr * tail_length / 1000
+		tail_duration = note.tail_duration
+		tail_start_index = int(len(target) - sr * tail_duration / 1000)
 		body = target[:tail_start_index]
 		tail = target[tail_start_index:]
 
@@ -68,7 +69,7 @@ class Envelope():
 		tail_applied = None
 
 		# useful for the calculations that follow
-		AD = self.attack + self.decay
+		AD = AudioBuffer(self.attack + self.decay)
 
 		if len(body) <= len(AD):
 			# Note is over, before the [attack + decay] sequence is done,
@@ -87,15 +88,15 @@ class Envelope():
 			# and we create a Sustain buffer that is THAT long.
 			self.sustain = Line(self.decay.ending_value,
 								self.decay.ending_value,
-								body.duration - AD.duration)
+								note.duration - AD.duration)
 
 			# Put the Sustain buffer together with our AD
 			# and apply it to our target's body
-			ADS = AD + self.sustain
-			body_applied = body.multiply(ADS)
+			ADS = AudioBuffer(AD + self.sustain)
+			body_applied = ADS.multiply(body)
 
 
-		tail_applied = tail.multiply(self.release)
+		tail_applied = self.release.multiply(tail)
 
 		return body_applied + tail_applied
 

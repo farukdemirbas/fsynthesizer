@@ -14,7 +14,7 @@ class Sinusoid(AudioBuffer):
 		self.duration_ms = duration_ms
 		self.amplitude = amplitude
 
-		self._becomeSinusoid(self.frequency, self.duration_ms, self.amplitude)
+		self._becomeSinusoid()
 
 	def _becomeSinusoid(self):
 		self.clear()

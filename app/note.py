@@ -215,6 +215,6 @@ class Note():
 
 		# here, we just make a sequence of zeroes followed by the main buffer
 		echo = (
-			AudioBuffer([0]) * sr * self.echo_delay / 1000) + self.main_buffer
+			AudioBuffer([0]) * int(sr * self.echo_delay / 1000)) + self.main_buffer
 		
 		self.main_buffer = self.main_buffer.add(echo)

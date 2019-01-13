@@ -9,7 +9,11 @@ def parse_notes(song_file):
 				tracks.append(track)
 				track.clear()
 			else:
-				track.append(line.split())
+				# convert necessary strings into floats
+				temp = line.split()
+				for i in range(1, len(temp)):
+					temp[i] = float(temp[i])
+				track.append(temp)
 		tracks.append(track)
 
 	return tracks

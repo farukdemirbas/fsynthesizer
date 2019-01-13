@@ -1,5 +1,7 @@
+import wave
+import struct
 from audiobuffer import AudioBuffer
-from config import MAX_AMPLITUDE
+from config import MAX_AMPLITUDE, SAMPLE_WIDTH
 
 class SongBuffer(AudioBuffer):
 
@@ -9,14 +11,14 @@ class SongBuffer(AudioBuffer):
 		# list of Track objects
 		self.tracks = []
 
-		# cursor determines where the next writing operation will occur
+		# determines where the next writing operation will occur
 		self.cursor = 0
 
 	def addTrack(self, track):
 		self.tracks.append(track)
 
-	def makeSong(self, tracks):
-		for track in tracks:
+	def makeSong(self):
+		for track in self.tracks:
 			for note in track.notes:
 				note.process()
 				self.writeToSelf(note)
@@ -36,5 +38,14 @@ class SongBuffer(AudioBuffer):
 		self.multiply(0.85 * MAX_AMPLITUDE)
 
 	def writeToWav(self):
-		# return path to wav file
-		pass
+		sr = self.sample_rate
+
+		data = struct.pack("<h" * len(self), *self)
+
+		with open("../songs/test.wav", "wb") as f:
+			f.setsampwidth(SAMPLE_WIDTH)
+			f.setnchannels(1)
+			f.setframerate(sr)
+
+			f.writeframesraw(data)
+

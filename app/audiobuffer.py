@@ -8,10 +8,18 @@ class AudioBuffer(list):
 	def __init__(self, *args, **kwargs):
 		super(AudioBuffer, self).__init__(*args, **kwargs)
 
+	# def __getitem__(self, key):
+	# 	return AudioBuffer(list.__getitem__(self, key))
+
 	def add(self, other):
-		# adding a scalar is not supported as it shouldn't ever be needed.
+		""" return a new AudioBuffer that is the result of
+		adding Other onto Self element-wise.
+		the original AudioBuffers remain untouched.
+		"""
+
+		# adding a scalar is not supported as it shouldn't be needed yet.
 		if not isinstance(other, list):
-			return
+			raise Exception("Can not add() a scalar value to an AudioBuffer.")
 
 		if len(other) == 0:
 			return self
@@ -59,3 +67,12 @@ class AudioBuffer(list):
 				result.append(el * other)
 
 		return result
+
+	@property
+	def duration(self):
+		sr = self.sample_rate
+		dur = len(self) * 1000 / sr
+		return dur
+
+	def deepcopy(self):
+		return AudioBuffer([val for val in self])
