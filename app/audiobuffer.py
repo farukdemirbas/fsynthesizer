@@ -6,10 +6,18 @@ class AudioBuffer(list):
 	sample_rate = SAMPLE_RATE
 
 	def __init__(self, *args, **kwargs):
-		super(AudioBuffer, self).__init__(*args, **kwargs)
+		super().__init__(*args, **kwargs)
 
-	# def __getitem__(self, key):
-	# 	return AudioBuffer(list.__getitem__(self, key))
+	def __getitem__(self, key):
+		if isinstance(key, slice):
+			return AudioBuffer(super().__getitem__(key))
+		return super().__getitem__(key)
+
+	def __mul__(self, val):
+		return AudioBuffer(super().__mul__(val))
+
+	def __add__(self, el):
+		return AudioBuffer(super().__add__(el))
 
 	def add(self, other):
 		""" return a new AudioBuffer that is the result of
@@ -54,7 +62,7 @@ class AudioBuffer(list):
 		# if "other" is an iterable object,
 		if isinstance(other, list):
 			if len(other) == 0:
-				return self
+				return result
 			# find the overlap length
 			# and multiply each index as normal
 			overlap = min(len(self), len(other))

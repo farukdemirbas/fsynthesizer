@@ -8,7 +8,7 @@ class Sinusoid(AudioBuffer):
 	"""
 
 	def __init__(self, frequency, duration_ms, amplitude=0.5, *args, **kwargs):
-		super(Sinusoid, self).__init__(*args, **kwargs)
+		super().__init__(*args, **kwargs)
 
 		self.frequency = frequency
 		self.duration_ms = duration_ms
@@ -58,7 +58,7 @@ class Line(AudioBuffer):
 
 	def __init__(self, starting_value, ending_value,
 					duration_ms, *args, **kwargs):
-		super(Line, self).__init__(*args, **kwargs)
+		super().__init__(*args, **kwargs)
 
 		self.starting_value = starting_value
 		self.ending_value = ending_value

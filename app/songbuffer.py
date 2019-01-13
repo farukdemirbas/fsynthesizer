@@ -50,13 +50,11 @@ class SongBuffer():
 
 		This method is as efficient as recycling a book by licking its papers
 		until it disintegrates into nature.
-		And it is as readable as that book AFTER it's been disintegrated.
+		And it is as readable as that book after it's been disintegrated.
 		"""
 
 		# newportion will replace the part of self.buffer that's after cursor
-		newportion = AudioBuffer(self.buffer[self.cursor:]).add(
-															note.main_buffer)
-		self.buffer = AudioBuffer(self.buffer[:self.cursor] + newportion)
+		self.buffer[self.cursor:] = self.buffer[self.cursor:].add(note.main_buffer)
 		self.cursor += int(self.buffer.sample_rate * note.duration / 1000)
 
 	def scaleVolume(self):
@@ -65,7 +63,7 @@ class SongBuffer():
 		# so we scale it up according to our sample width
 		# minus a bit of a safety margin.
 		# (because audio FX may have raised the amplitude to a value above 1)
-		self.buffer = self.buffer.multiply(0.2 * MAX_AMPLITUDE)
+		self.buffer = self.buffer.multiply(0.25 * MAX_AMPLITUDE)
 		
 
 

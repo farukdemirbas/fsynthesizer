@@ -40,6 +40,7 @@ class Track:
 	"""
 	
 	def __init__(self):
+		self.name = ""  # example: BASSLINE!!! (I'M ALREADY EXCITED)
 		self.notes = []
 		self.volume = 0.5
 		self.envelope = None

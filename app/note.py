@@ -147,6 +147,8 @@ class Note():
 		# TOTAL DURATION of the note == duration + tail_duration
 		self.tail_duration = 0
 
+		self.total_duration = None
+
 		self.frequency = FREQ[self.note]
 		self.volume = volume
 		self.envelope = envelope
@@ -155,7 +157,7 @@ class Note():
 		# harmonic[0] is the 1st harmonic, harmonic[1] is the 2nd harmonic...
 		# and the value of each index is the harmonic's volume ratio. We don't
 		# have to have them add up to 1, but a value close to 1 is advised.
-		self.harmonics = [0.8, 0.15, 0.05]
+		self.harmonics = [0.85, 0.10, 0.05]
 
 		self.echo = echo
 		self.echo_delay = echo_delay
@@ -184,6 +186,7 @@ class Note():
 			self.tail_duration += self.envelope.release_time
 		if self.echo:
 			self.tail_duration += self.echo_delay
+		self.total_duration = self.duration + self.tail_duration
 
 	def generateRawNote(self):
 		if self.note == '-':
@@ -193,24 +196,20 @@ class Note():
 		else:
 			self.raw_buffer = Sinusoid(self.frequency, self.duration
 									+ self.tail_duration, self.volume)
+			# place a copy of the raw buffer onto the main buffer
+			self.main_buffer = AudioBuffer([val for val in self.raw_buffer])
 
-	def applyHarmonics(self, harmonics=None):
-		if harmonics == None:
-			harmonics = self.harmonics
-		
-		# apply the volume to the 1st harmonic, which is our raw_buffer atm.
-		self.raw_buffer = self.raw_buffer.multiply(self.harmonics[0])
-
-		# place a copy of the raw buffer onto the master buffer
-		self.master_buffer = [val for val in self.raw_buffer]
+	def applyHarmonics(self):		
+		# apply the volume to the 1st harmonic.
+		self.main_buffer = self.main_buffer.multiply(self.harmonics[0])
 
 		# generate the signals for the other harmonics
 		# and add them all onto the main buffer
-		for i in range(len(harmonics)):
-			if harmonics[i] != 0:
+		for i in range(1, len(self.harmonics)):
+			if self.harmonics[i] != 0:
 				# looks complicated but it's not. see comments on "harmonics"
 				harm = Sinusoid(self.frequency * (i+1),
-								self.duration, harmonics[i])
+								self.total_duration, self.harmonics[i])
 				self.main_buffer = self.main_buffer.add(harm)
 
 

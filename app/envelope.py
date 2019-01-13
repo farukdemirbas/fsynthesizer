@@ -59,15 +59,22 @@ class Envelope():
 		target = note.main_buffer
 		tail_duration = note.tail_duration
 		tail_start_index = int(sr * note.duration / 1000)
-		body = AudioBuffer(target[:tail_start_index])
-		tail = AudioBuffer(target[tail_start_index:])
+		body = target[:tail_start_index]
+		tail = target[tail_start_index:]
+		
+		# print("note.duration:", note.duration)
+		# print("note.duration's len calculated:", note.duration * sr / 1000)
+		# print("len(note.main_buffer):", len(note.main_buffer))
+		# print("note.dur + note.taildur:", note.duration + note.tail_duration)
+		# print("length of ^^:", sr / 1000 * (note.duration + note.tail_duration))
+		# print()
 
 		# these two will be the result of the operation
 		body_applied = None
 		tail_applied = None
 
 		# useful for the calculations that follow
-		AD = AudioBuffer(self.attack + self.decay)
+		AD = self.attack + self.decay
 
 		if len(body) <= len(AD):
 			# Note is over, before the [attack + decay] sequence is done,
@@ -90,17 +97,17 @@ class Envelope():
 
 			# Put the Sustain buffer together with our AD
 			# and apply it to our target's body
-			ADS = AudioBuffer(AD + self.sustain)
+			ADS = AD + self.sustain
 			body_applied = ADS.multiply(body)
 
 
 		tail_applied = self.release.multiply(tail)
 
-		return AudioBuffer(body_applied + tail_applied)
+		return body_applied + tail_applied
 
 
 example_envelopes = {
 	"0": Envelope(1, 20, 0.75, 40, 50),
 	"1": Envelope(1, 150, 0.75, 40, 150),
-	"2": Envelope(1, 200, 1, 0, 3000),
+	"2": Envelope(1, 50, .7, 70, 500),
 }

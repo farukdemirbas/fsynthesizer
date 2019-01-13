@@ -24,7 +24,7 @@ def generate_audio_file():
 		t.envelope = example_envelopes["2"]
 		t.echo = False
 		t.echo_delay = 200
-		t.echo_volume = 0.8
+		t.echo_volume = 0.6
 		t.applySettingsToNotes()
 		master.addTrack(t)
 
