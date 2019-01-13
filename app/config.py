@@ -2,6 +2,12 @@ import platform
 
 OPERATING_SYSTEM = platform.system()
 
+NOTESFOLDER = "../compositions/"
+NOTESNAME = ""
+
+TARGETFOLDER = "../songs/"
+TARGETNAME = ""
+
 SAMPLE_RATE = 44100  # 44100 samples per second of audio.
 
 SAMPLE_WIDTH = 2  # 2 bytes (16 bits) for each sample.
@@ -11,7 +17,7 @@ SAMPLE_WIDTH = 2  # 2 bytes (16 bits) for each sample.
 # Because audio effects may push the amplitude above the limit.
 # At sample width == 2, (aka 16 bits), the range is 32768.
 # With the 0.9 scaler, it's trimmed down to 29491.
-MAX_AMPLITUDE = int(0.9 * (2 ** (SAMPLE_WIDTH * 8)) / 2)  # /2 because signed.
+MAX_AMPLITUDE = int((2 ** (SAMPLE_WIDTH * 8)) / 2) - 1  # /2 because signed.
 
 # Hand-picked value for our custom musical notation format.
 # "Durations" (which are arbitrary, since the user does not enter milliseconds)

@@ -52,17 +52,15 @@ class Envelope():
 		# But most times its starting value will be the decay's ending value.
 		# The edge case where a Note ends before our attack+decay is
 		# known to our apply() method, and necessary actions are taken there.
-		self.release = Line(self.decay_end, self.decay_end, self.release_time)
-
-		self.release_time = release_time
+		self.release = Line(self.decay_end, 0, self.release_time)
 
 	def apply(self, note):
 		sr = Line.sample_rate
 		target = note.main_buffer
 		tail_duration = note.tail_duration
-		tail_start_index = int(len(target) - sr * tail_duration / 1000)
-		body = target[:tail_start_index]
-		tail = target[tail_start_index:]
+		tail_start_index = int(sr * note.duration / 1000)
+		body = AudioBuffer(target[:tail_start_index])
+		tail = AudioBuffer(target[tail_start_index:])
 
 		# these two will be the result of the operation
 		body_applied = None
@@ -98,9 +96,11 @@ class Envelope():
 
 		tail_applied = self.release.multiply(tail)
 
-		return body_applied + tail_applied
+		return AudioBuffer(body_applied + tail_applied)
 
 
 example_envelopes = {
-	"0": Envelope(1, 20, 0.75, 40, 50)
+	"0": Envelope(1, 20, 0.75, 40, 50),
+	"1": Envelope(1, 150, 0.75, 40, 150),
+	"2": Envelope(1, 200, 1, 0, 3000),
 }

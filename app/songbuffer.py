@@ -3,15 +3,19 @@ import struct
 from audiobuffer import AudioBuffer
 from config import MAX_AMPLITUDE, SAMPLE_WIDTH
 
-class SongBuffer(AudioBuffer):
+class SongBuffer():
+	""" Responsible to put the tracks together and create the final
+	song buffer, and then write out to a wav file.
+	As it is, this class is highly inefficient, and will be revisited.
+	"""
 
 	def __init__(self, *args, **kwargs):
-		super(SongBuffer, self).__init__(*args, **kwargs)
-
 		# list of Track objects
 		self.tracks = []
 
-		# determines where the next writing operation will occur
+		self.buffer = AudioBuffer()
+
+		# cursor determines where the next writing operation will occur
 		self.cursor = 0
 
 	def addTrack(self, track):
@@ -21,31 +25,72 @@ class SongBuffer(AudioBuffer):
 		for track in self.tracks:
 			for note in track.notes:
 				note.process()
+				
+				# print(len(note.envelope.release), 3000 * self.buffer.sample_rate / 1000, note.tail_duration)
+				# print(len(note.main_buffer), (note.duration + note.tail_duration) * self.buffer.sample_rate / 1000)
+
 				self.writeToSelf(note)
-				del note
+				note.main_buffer.clear()
+				note.raw_buffer.clear()
 			self.cursor = 0
 		self.scaleVolume()
 	
+	# ---------------------!!!!!!!!!!!!!-------------------------- #
+	# ----------------------- WARNING ---------------------------- #
+	# ----------------- MENTAL SAFETY HAZARD --------------------- #
+	# ----------------- HORRIBLE CODE BELOW ---------------------- #
+	# VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV #
+	# ---------------------!!!!!!!!!!!!!-------------------------- #
 	def writeToSelf(self, note):
-		self[self.cursor:].add(note.main_buffer)
-		self.cursor += len(self.sample_rate * note.duration / 1000)
+		"""DO NOT LOOK INSIDE. DISASTER.
+		(Temporary solution to a design conflict.)
+
+		Readability? 10/10.
+		Efficiency? World class.
+
+		This method is as efficient as recycling a book by licking its papers
+		until it disintegrates into nature.
+		And it is as readable as that book AFTER it's been disintegrated.
+		"""
+
+		# newportion will replace the part of self.buffer that's after cursor
+		newportion = AudioBuffer(self.buffer[self.cursor:]).add(
+															note.main_buffer)
+		self.buffer = AudioBuffer(self.buffer[:self.cursor] + newportion)
+		self.cursor += int(self.buffer.sample_rate * note.duration / 1000)
 
 	def scaleVolume(self):
-		# the song completely ready, and sitting on the buffer
-		# except its amplitude is between [0, 1]
+		# the song is completely ready, and sitting on the buffer
+		# except its amplitude ranges between [0, 1].
 		# so we scale it up according to our sample width
 		# minus a bit of a safety margin.
-		self.multiply(0.85 * MAX_AMPLITUDE)
+		# (because audio FX may have raised the amplitude to a value above 1)
+		self.buffer = self.buffer.multiply(0.2 * MAX_AMPLITUDE)
+		
+
+
+		for track in self.tracks:
+			for note in track.notes:
+				pass
+
+
 
 	def writeToWav(self):
-		sr = self.sample_rate
+		from config import TARGETFOLDER, TARGETNAME
+		sr = self.buffer.sample_rate
 
-		data = struct.pack("<h" * len(self), *self)
+		data = bytes()
+		for val in self.buffer:
+			temp = int(val)
+			data += struct.pack('<h', temp)
 
-		with open("../songs/test.wav", "wb") as f:
+		with wave.open("{}{}.wav".format(TARGETFOLDER, TARGETNAME), "wb") as f:
 			f.setsampwidth(SAMPLE_WIDTH)
 			f.setnchannels(1)
 			f.setframerate(sr)
 
 			f.writeframesraw(data)
+			f.writeframes(b'')
+
+		return 
 

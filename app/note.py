@@ -136,6 +136,10 @@ class Note():
 		self.main_buffer = AudioBuffer()  # to hold the final sound of note
 		self.raw_buffer = None  # to hold unprocessed note signal
 		self.note = note
+		self.rest = False
+
+		if self.note == '-':
+			self.rest = True
 		
 		# all duration data is in milliseconds
 		self.duration = duration
@@ -161,15 +165,20 @@ class Note():
 
 	def process(self):
 		# completely process and get the note ready for writing
-		self.calcTailLength()
-		self.generateRawNote()
-		self.applyHarmonics()
-		if self.envelope:
-			self.applyEnvelope()
-		if self.echo:
-			self.applyEcho()
+		if not self.rest:
+			self.calcTailDuration()
+			self.generateRawNote()
+			self.applyHarmonics()
+			if self.envelope:
+				self.applyEnvelope()
+			if self.echo:
+				self.applyEcho()
+		else:
+			self.main_buffer = AudioBuffer(
+				[0] * int(AudioBuffer.sample_rate * self.duration / 1000))
+			self.raw_buffer = self.main_buffer.deepcopy()
 
-	def calcTailLength(self):
+	def calcTailDuration(self):
 		self.tail_duration = 0
 		if self.envelope:
 			self.tail_duration += self.envelope.release_time
@@ -205,10 +214,8 @@ class Note():
 				self.main_buffer = self.main_buffer.add(harm)
 
 
-	def applyEnvelope(self, envelope=None):
-		if envelope == None:
-			envelope = self.envelope
-		envelope.apply(self)
+	def applyEnvelope(self):
+		self.main_buffer = self.envelope.apply(self)
 
 	def applyEcho(self):
 		sr = AudioBuffer.sample_rate

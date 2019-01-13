@@ -1,19 +1,19 @@
 from sys import argv
 from generate import generate_audio_file
+import config
 
 
-def main(notes_file):
-	wave_file_path = generate_audio_file(notes_file)
 
-	print(
-		"Success. \nHere is the path to your song: \n{}".format(wave_file_path)
-	)
-
+def main(notes_file, targetname):
+	config.TARGETNAME = targetname
+	config.NOTESNAME = notes_file
+	generate_audio_file()
+	print("\nSuccess")
 
 if __name__ == "__main__":
 	try:
-		main(argv[1])  # argv[1] is the txt file for the notes_file.
+		main(argv[1], argv[2])
 	except IndexError:
-		print("Please specify the file containing the notes."
-			  "\nExample: python main.py \"mysong.txt\""
-			  "\nThe song file should be in the \"compositions\" folder.\n")
+		print("\nExample: python main.py mysong.txt songname"
+			  "\nThe notes file should be in the \"compositions\" folder.\n"
+			  "\nThe song will be written to songname.wav in the songs folder")
