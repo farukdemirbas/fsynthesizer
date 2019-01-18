@@ -3,12 +3,13 @@ fsynthesizer [v0.01]
 ---
 
 HOW TO USE:
+
 Write your compositions in a text file inside the "compositions" folder.
 (Check the readme.txt in there for a quick guide on composition formatting).
 Then, if you want custom effects on your tracks, see "songsettings.py".
 To run the program, execute "python -m main mysong.txt mysong"
 The program will look for "mysong.txt" in the compositions folder, and create a "mysong.wav" in the songs folder.
-So your resulting .wav file will be be found in the "songs" folder.
+So your resulting .wav file will be found in the "songs" folder.
 
 Check out the "songs" folder for sample songs.
 Check the "compositions" folder for sample compositions.
