@@ -11,9 +11,10 @@ def main(notes_file, targetname):
 	print("\nSuccess")
 
 if __name__ == "__main__":
-	try:
-		main(argv[1], argv[2])
-	except IndexError:
+	if len(argv) < 2:
 		print("\nExample: python main.py mysong.txt songname"
 			  "\nThe notes file should be in the \"compositions\" folder.\n"
 			  "\nThe song will be written to songname.wav in the songs folder")
+		
+	main(argv[1], argv[2])
+	

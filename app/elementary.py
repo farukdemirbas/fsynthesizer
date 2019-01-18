@@ -1,5 +1,11 @@
+"""Elementary parts, like Lines or Sinusoids, that make up a buffer.
+Lines are used for creating Envelopes.
+Sinusoids are used for creating Notes.
+"""
+
 import math
 from audiobuffer import AudioBuffer
+
 
 class Sinusoid(AudioBuffer):
 	""" Takes frequency, length (milliseconds!), and amplitude (from 0 to 1),

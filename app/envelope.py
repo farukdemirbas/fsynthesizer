@@ -107,7 +107,10 @@ class Envelope():
 
 
 example_envelopes = {
-	"0": Envelope(1, 20, 0.75, 40, 50),
-	"1": Envelope(1, 150, 0.75, 40, 150),
-	"2": Envelope(1, 50, .7, 70, 500),
+	"standard": Envelope(1, 10, 0.75, 20, 25),
+	"mediumrelease": Envelope(1, 10, 1, 10, 350),
+	"longrelease": Envelope(1, 10, 1, 10, 1100),
+	"pulse": Envelope(1, 10, .45, 25, 25),
+	"heavenly": Envelope(1, 800, 1, 1, 1200),
+	"drawnout": Envelope(1, 3000, 0.3, 1000, 2600)
 }

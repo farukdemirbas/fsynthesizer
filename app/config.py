@@ -26,7 +26,7 @@ MAX_AMPLITUDE = int((2 ** (SAMPLE_WIDTH * 8)) / 2) - 1  # /2 because signed.
 # 2000 ms is how long 1 bar takes at 120 bpm.
 # This mess will later be remedied when musical input is completely reformed,
 # (aka when we start taking MIDI files as input)
-DURATION_MULTIPLIER = 5
+DURATION_MULTIPLIER = 2.5
 
 # Frequency values (in Hz) for each note, where A4: 440 Hz
 # source: http://pages.mtu.edu/~suits/notefreqs.html

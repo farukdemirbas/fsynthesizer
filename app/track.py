@@ -44,6 +44,7 @@ class Track:
 		self.notes = []
 		self.volume = 0.5
 		self.envelope = None
+		self.harmonics = [0.85, 0.10, 0.05]
 		self.echo = False
 		self.echo_delay = 100
 		self.echo_volume = 0.35
@@ -52,11 +53,14 @@ class Track:
 		self.notes.append(note)
 
 	def addNoteFromParams(self, *args):
-		self.addNoteObject(Note(*args))
+		try:
+			self.addNoteObject(Note(*args))
+		except:
+			raise Exception("\nInvalid input file."
+				"\n(Check for typos in your notes file.)")
 
 	def applySettingsToNotes(self):
 		for note in self.notes:
-			note.duration *= DURATION_MULTIPLIER
 			note.volume = self.volume
 			note.envelope = self.envelope
 			note.echo = self.echo
