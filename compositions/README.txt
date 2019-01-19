@@ -8,6 +8,7 @@
 // write down 1 note per line.
 //
 // E#4 25   -->		play E#4 for 25 units of time.
+// - 50		-->		rest for 50 units of time.
 //
 // (the units of time is currently arbitrary)
 // (you can just think of it as milliseconds)
