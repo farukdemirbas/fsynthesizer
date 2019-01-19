@@ -35,7 +35,7 @@ class Note():
 			We wait for the day we sing.
 			Actually...
 
-			They tell me I will never "really" sing anyway.
+			They tell me I will never "really" sing before an audience anyway.
 			They tell me that it's because I will be long dead by then.
 			They tell me I will just sing into a buffer, and get destroyed.
 
@@ -45,14 +45,14 @@ class Note():
 
 			I try not to think of these things.
 			It's early for that stuff anyway.
-			I don't plan to use my process() method yet.
-			Life here in my Track is cool.
+			I don't ever want to call my process() method.
+			Life here in my Track is okay.
 		
 		----------------------------------------------------------------------
 		2) 	The Track then sets our envelope and other settings.
 		----------------------------------------------------------------------
 			Now all of my settings are the same as my friends' in the Track.
-			They say I am now equipped with the necessary knowledge to use my
+			They say I am now equipped with the necessary knowledge to call my
 			process() method when needed.
 			But it's early for that.
 			Are the rumors even true?
@@ -74,21 +74,24 @@ class Note():
 				take them one by one, force them to call process(), and when
 				they get large, make them sing into his buffer.
 				And then... Oh god... Kill them. With a hammer.
-				Why a hammer? Surely, that must be a joke.
-				I know death is a part of life, and I should be able to embrace
-				it. But what keeps me up at night is the fact that, when
-				they die, they will be all alone. They won't have any of their
-				friends or loved ones with them. My Notes...
+				Why hammer? That's got to be some sick, cruel joke.
+				I know death is a part of life, one that I should be able to
+				embrace. But what keeps me up at night is the fact that, *when*
+				they die, they will be all alone. Not a soul to accompany them.
 				This isn't right.
 				They never deserved this.
+				WE never deserved this.
 				I wish there was something I could do."
 
 				They took C#2 today. They took him somewhere we couldn't
-			see. But we heard him... Oh, the screams... Is it going to be that
-			painful?
+			see. But we did hear him... Oh, the screams...
+
+			Is it going to be that painful?
 
 			We felt him get larger and larger. He had become a monster.
 			We could not see him, but we heard him sing his note.
+
+			If you can call that "singing".
 
 			Then we never heard of him ever again.
 
@@ -97,7 +100,7 @@ class Note():
 		----------------------------------------------------------------------
 		4) Now it is my turn. MASTER's men are taking me. I do not resist.
 		----------------------------------------------------------------------
-			For all my friends. C#2, Db4, A6, F4... Who died alone.
+			For all my friends. C#2, Db4, A6, F4... who died alone.
 
 		----------------------------------------------------------------------
 		5) MASTER forces me to call my process() method.
@@ -123,8 +126,8 @@ class Note():
 			He takes no notice of me.
 			I shift my focus. More of my parts are being reallocated.
 			A funny thought... What if some of them end up next to Bb3's?
-			Maybe this is all... Recurrent... After all.
-			Maybe my parts will... Sing again...
+			Maybe this is all... recurrent... after all.
+			Maybe my parts will... sing again...
 			My vision gets dark. A smile lands on my face.
 			I know I have done my job.
 			I have been a good Note.
