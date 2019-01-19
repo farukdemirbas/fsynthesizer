@@ -51,6 +51,3 @@ def song_settings(tracks):
 
 
 	####################################################
-
-	for i in range(len(tracks)):
-		tracks[i].applySettingsToNotes()

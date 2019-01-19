@@ -23,11 +23,13 @@ def generate_audio_file():
 	for i in range(len(tracks)):
 		tracks[i] = convert_to_track(tracks[i])
 
-	apply_default_settings(tracks)  # start with the default settings
+	set_default_settings(tracks)  # start with the default settings
 	print("\nApplying user settings onto tracks...")
-	apply_user_settings(tracks)   # override the default settings as desired
+	set_user_settings(tracks)   # override the default settings as desired
+	apply_settings_to_notes(tracks)
 
 	apply_duration_multiplier(tracks)
+
 
 	print("\nAttaching tracks to master buffer...")
 	# Add our Track objects to the master SongBuffer
@@ -42,15 +44,14 @@ def generate_audio_file():
 
 	return True
 
-def apply_default_settings(tracks):
+def set_default_settings(tracks):
 	for i in range(len(tracks)):
 		tracks[i].envelope = example_envelopes["standard"]
 		tracks[i].echo = False
 		tracks[i].echo_delay = 200
 		tracks[i].echo_volume = 0.6
-		tracks[i].applySettingsToNotes()
 
-def apply_user_settings(tracks):
+def set_user_settings(tracks):
 	try:
 		song_settings(tracks)
 	except Exception:
@@ -65,3 +66,7 @@ def apply_duration_multiplier(tracks):
 	for track in tracks:
 		for note in track.notes:
 			note.duration *= DURATION_MULTIPLIER
+
+def apply_settings_to_notes(tracks):
+	for i in range(len(tracks)):
+		tracks[i].applySettingsToNotes()
