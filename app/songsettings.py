@@ -2,7 +2,7 @@ from envelope import example_envelopes
 
 def song_settings(tracks):
 	""" You should know how many tracks you have in your composition.
-	En example case is portrayed below.
+	An example case is portrayed below.
 
 	# I have 3 tracks, I name them for convenience.
 -->	pad = tracks[0]
@@ -47,6 +47,7 @@ def song_settings(tracks):
 	"""
 
 	################# YOUR CODE HERE ###################
+	
 
 
 

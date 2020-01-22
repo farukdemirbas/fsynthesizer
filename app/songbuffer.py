@@ -1,4 +1,5 @@
 import wave
+import os
 from array import array
 from audiobuffer import AudioBuffer
 from config import MAX_AMPLITUDE, SAMPLE_WIDTH
@@ -28,7 +29,10 @@ class SongBuffer():
 		self.tracks.append(track)
 
 	def makeSong(self):
+		i = 1
 		for track in self.tracks:
+			print("Processing track {}/{}...".format(i, len(self.tracks)))
+			i += 1
 			for note in track.notes:
 				note.process()
 				self.writeToSelf(note)
@@ -51,18 +55,17 @@ class SongBuffer():
 		self.buffer = self.buffer.multiply(0.25 * MAX_AMPLITUDE)
 
 	def writeToWav(self):
-		from config import TARGETFOLDER, TARGETNAME
+		from config import TARGETFOLDER, NOTESPATH
 		sr = self.buffer.sample_rate
 
 		print("Packing python objects into primitive types.")
-
 		for i in range(len(self.buffer)):
 			self.buffer[i] = int(self.buffer[i])
-
 		data = array('h', self.buffer)
 
 		print("Writing out to wav...")
-		with wave.open("{}{}.wav".format(TARGETFOLDER, TARGETNAME), "wb") as f:
+		target_name = os.path.splitext(os.path.basename(NOTESPATH))[0] + ".wav"
+		with wave.open(os.path.join(os.path.dirname(os.getcwd()), TARGETFOLDER, target_name), "wb") as f:
 			f.setsampwidth(SAMPLE_WIDTH)
 			f.setnchannels(1)
 			f.setframerate(sr)

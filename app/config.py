@@ -1,14 +1,8 @@
-import platform
+NOTESPATH = None # Entered by the user at run-time
 
-OPERATING_SYSTEM = platform.system()
+TARGETFOLDER = "songs"
 
-NOTESFOLDER = "../compositions/"
-NOTESNAME = ""
-
-TARGETFOLDER = "../songs/"
-TARGETNAME = ""
-
-SAMPLE_RATE = 44100  # 44100 samples per second of audio.
+SAMPLE_RATE = 44100  # samples per second of audio.
 
 SAMPLE_WIDTH = 2  # 2 bytes (16 bits) for each sample.
 
@@ -28,10 +22,10 @@ MAX_AMPLITUDE = int((2 ** (SAMPLE_WIDTH * 8)) / 2) - 1  # /2 because signed.
 # (aka when we start taking MIDI files as input)
 DURATION_MULTIPLIER = 2.5
 
-# Frequency values (in Hz) for each note, where A4: 440 Hz
-# source: http://pages.mtu.edu/~suits/notefreqs.html
+# Frequency values (in Hz) for each note, where "A4": 440 Hz
+# Source: http://pages.mtu.edu/~suits/notefreqs.html
 FREQ = {
-	"-" :	0,
+	"-" :	0.0,
 	"C0":	16.35,
 	"C#0":	17.32,
 	"Db0":	17.32,
