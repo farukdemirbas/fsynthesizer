@@ -3,6 +3,7 @@
 fsynthesizer is a console application that takes in a custom-format musical  
 composition, applies rudimentary sound processing and generates a WAV file.  
 
+---
 #### HOW TO USE
 
 Write your compositions in a text file inside the `compositions` folder.  
