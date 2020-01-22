@@ -6,15 +6,16 @@ composition, applies rudimentary sound processing and generates a WAV file.
 #### HOW TO USE
 
 Write your compositions in a text file inside the `compositions` folder.  
-(Check the `README.txt` in there for a quick guide on composition formatting).  
+(Check the `README.txt` in there for a quick guide on composition formatting)  
 
 Then, if you want custom effects on your tracks, see "songsettings.py".  
-To run the program, execute `python -m run [absolute_path_to_my_song.txt]`  
+To run the program, execute:  
+`python -m run [absolute_path_to_my_song.txt]`  
 Your resulting .wav file will be found in the "songs" folder.  
 
 ---
 Check the `compositions` folder for sample compositions  
-(Which have their corresponding outputs in the `songs` folder).  
+(Which have their corresponding outputs in the `songs` folder)  
 
 ---
 
