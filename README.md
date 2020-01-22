@@ -10,8 +10,10 @@ Write your compositions in a text file inside the `compositions` folder.
 (Check the `README.txt` in there for a quick guide on composition formatting)  
 
 Then, if you want custom effects on your tracks, see "songsettings.py".  
-To run the program, execute:  
-`python -m run [absolute_path_to_my_song.txt]`  
+To run the program, execute:
+
+`python -m run [absolute_path_to_my_song.txt]`
+
 Your resulting .wav file will be found in the "songs" folder.  
 
 ---
