@@ -4,7 +4,6 @@ from generate import generate_audio_file
 import config
 
 
-
 def main(notes_file):
 	config.NOTESPATH = os.path.abspath(notes_file)
 	generate_audio_file()

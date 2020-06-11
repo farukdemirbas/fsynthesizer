@@ -1,0 +1,6 @@
+TODO:
+
+> Use python arrays for buffers.
+    > AudioBuffer should not derive from "list", but something proper.
+
+> Add MIDI or OSC support

@@ -9,7 +9,9 @@ composition, applies rudimentary sound processing and generates a WAV file.
 Write your compositions in a text file inside the `compositions` folder.  
 (Check the `README.txt` in there for a quick guide on composition formatting)  
 
-Then, if you want custom effects on your tracks, see "songsettings.py".  
+Then, if you want custom effects on your tracks,
+see the nice and brief explanation in "songsettings.py". 
+
 To run the program, execute:
 
 `python -m run [absolute_path_to_my_song.txt]`
@@ -26,5 +28,7 @@ Near future:
 - Add MIDI/OSC support
 
 Distant future:
-- Rewrite in C++
+- Rewrite performance-critical parts in C++
+- Introduce real-time functionality
+- Introduce a GUI
 - Work toward making into a DAW

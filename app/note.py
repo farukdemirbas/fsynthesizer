@@ -11,7 +11,7 @@ class Note():
 	a result of various Sound FX like echo and the envelope's release.
 	
 	---
-	*** GENERAL LIFE CYCLE OF A NOTE OBJECT WITHIN THIS PARTICULAR PROGRAM:
+	*** GENERAL LIFE CYCLE OF A NOTE OBJECT:
 
 			Hello, I am a Note. I don't exist yet. This is my life cycle.
 
