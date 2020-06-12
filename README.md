@@ -28,7 +28,6 @@ Near future:
 - Add MIDI/OSC support
 
 Distant future:
-- Rewrite performance-critical parts in C++
 - Introduce real-time functionality
 - Introduce a GUI
 - Work toward making into a DAW

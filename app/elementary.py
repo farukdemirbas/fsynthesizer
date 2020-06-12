@@ -13,6 +13,9 @@ class Sinusoid(AudioBuffer):
 	using the global SAMPLE_RATE information.
 	"""
 
+	def __new__(cls, *args, **kwargs):
+		return super().__new__(cls)
+
 	def __init__(self, frequency, duration_ms, amplitude=0.5, *args, **kwargs):
 		super().__init__(*args, **kwargs)
 
@@ -62,6 +65,9 @@ class Line(AudioBuffer):
 
 	"""
 
+	def __new__(cls, *args, **kwargs):
+		return super().__new__(cls)
+	
 	def __init__(self, starting_value, ending_value,
 					duration_ms, *args, **kwargs):
 		super().__init__(*args, **kwargs)

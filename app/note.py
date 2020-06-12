@@ -227,3 +227,7 @@ class Note():
 			AudioBuffer([0]) * int(sr * self.echo_delay / 1000)) + self.main_buffer
 		
 		self.main_buffer = self.main_buffer.add(echo)
+
+	def clearBuffers(self):
+		self.main_buffer.clear()
+		self.raw_buffer.clear()

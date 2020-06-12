@@ -1,12 +1,18 @@
 from config import SAMPLE_RATE
+from array import array
 
 
-class AudioBuffer(list):
+class AudioBuffer(array):
 
 	sample_rate = SAMPLE_RATE
 
-	def __init__(self, *args, **kwargs):
-		super().__init__(*args, **kwargs)
+	def __new__(cls, *args, **kwargs):
+		return super().__new__(cls, 'f')
+
+	def __init__(self, *args):
+		if not args:
+			return
+		self.append(args[0])
 
 	def __getitem__(self, key):
 		if isinstance(key, slice):
@@ -16,17 +22,24 @@ class AudioBuffer(list):
 	def __mul__(self, val):
 		return AudioBuffer(super().__mul__(val))
 
+	def append(self, *args, **kwargs):
+		try:
+			super().append(*args, **kwargs)
+		except:
+			self.extend(*args, **kwargs)
+
 	def __add__(self, el):
+		""" This is concatenation, not to be confused with 'add'. """
 		return AudioBuffer(super().__add__(el))
 
 	def add(self, other):
-		""" return a new AudioBuffer that is the result of
+		""" Return a new AudioBuffer that is the result of
 		adding Other onto Self element-wise.
 		the original AudioBuffers remain untouched.
 		"""
 
 		# adding a scalar is not supported as it shouldn't be needed yet.
-		if not isinstance(other, list):
+		if not isinstance(other, array):
 			raise Exception("Can not add() a scalar value to an AudioBuffer.")
 
 		if len(other) == 0:
@@ -35,7 +48,6 @@ class AudioBuffer(list):
 		# we need to know which one is the longer one and vice versa.
 		longer = None
 		shorter = None
-
 		if len(self) > len(other):
 			longer = self
 			shorter = other
@@ -53,14 +65,13 @@ class AudioBuffer(list):
 		return result
 
 	def multiply(self, other):
-		""" the multiplication behavior you'd expect
-		when applying an envelope
+		""" Element-wise multiplication.
 		"""
 
 		result = AudioBuffer()
 
 		# if "other" is an iterable object,
-		if isinstance(other, list):
+		if isinstance(other, array): #TODO: iterable, not just array
 			if len(other) == 0:
 				return result
 			# find the overlap length
@@ -78,9 +89,20 @@ class AudioBuffer(list):
 
 	@property
 	def duration(self):
-		sr = self.sample_rate
-		dur = len(self) * 1000 / sr
-		return dur
+		return len(self) * 1000 / self.sample_rate
 
 	def deepcopy(self):
 		return AudioBuffer([val for val in self])
+	
+	def clear(self):
+		del self[:]
+
+
+if __name__ == "__main__":
+	li = []
+	test_passed = True
+	for i in range(10):
+		if not len(AudioBuffer(li))==len(li):
+			test_passed = False			
+		li.append(i)
+	print("Tests passed: {}".format(test_passed))

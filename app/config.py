@@ -1,10 +1,10 @@
-NOTESPATH = None # Entered by the user at run-time
+COMPOSITION_ABS_PATH = None # Entered by the user at run-time
 
-TARGETFOLDER = "songs"
+TARGET_FOLDER_NAME = "songs"
 
 SAMPLE_RATE = 44100  # samples per second of audio.
 
-SAMPLE_WIDTH = 2  # 2 bytes (16 bits) for each sample.
+SAMPLE_WIDTH = 4  # in bytes, for each sample.
 
 # Define maximum value for each sample based on the sample width.
 # But scale it to 0.9 as a safety cushion.

@@ -2,8 +2,8 @@ def parse_notes():
 	
 	tracks = []
 
-	from config import NOTESPATH
-	with open(NOTESPATH, 'r') as f:
+	from config import COMPOSITION_ABS_PATH
+	with open(COMPOSITION_ABS_PATH, 'r') as f:
 		lines = f.readlines()
 		track = []
 		for line in lines:
