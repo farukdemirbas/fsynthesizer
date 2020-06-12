@@ -1,6 +1,20 @@
+remove all pyc files on windows: del /S *.pyc
+
+python -m run C:\Users\faruk\Desktop\fsynthesizer\compositions\cumulus.txt
+
+-----------------------------------------------------
+
+DONE:
+
+> Run from anywhere without path related problems.
+
+-----------------------------------------------------
+
 TODO:
 
 > Use python arrays for buffers.
     > AudioBuffer should not derive from "list", but something proper.
 
 > Add MIDI or OSC support
+
+-----------------------------------------------------

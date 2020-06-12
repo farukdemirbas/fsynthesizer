@@ -1,7 +1,13 @@
-from envelope import example_envelopes
+from envelope import Envelope, example_envelopes
 
 def song_settings(tracks):
-	""" You should know how many tracks you have in your composition.
+	""" ALL OF THIS IS OPTIONAL!
+	If you don't care, just ignore this file completely, and your
+	composition will be written with default settings.
+
+	Continue if you care:
+	
+	You should know how many tracks you have in your composition.
 	An example case is portrayed below.
 
 	# I have 3 tracks, I name them for convenience.
@@ -10,7 +16,7 @@ def song_settings(tracks):
 -->	lead = tracks[2]
 	
 	# I use a pre-defined envelope for my pad track.
--->	pad.envelope = example_envelopes["pulse"]
+-->	pad.envelope = Envelope(*example_envelopes["pulse"])
 	
 	# I use another pre-defined envelope for my bass track.
 -->	bass.envelope = example_envelopes["longrelease"]
@@ -37,18 +43,17 @@ def song_settings(tracks):
 
 	------------------------------------------------
 		example_envelopes:
-			"standard": 		Envelope(1, 10, 0.75, 20, 25)
-			"mediumrelease":	Envelope(1, 10, 1, 10, 350)
-			"longrelease":		Envelope(1, 10, 1, 10, 1100)
-			"pulse": 			Envelope(1, 10, .45, 25, 25)
-			"heavenly":			Envelope(1, 800, 1, 1, 1200)
-			"drawnout":			Envelope(1, 3000, 0.3, 1000, 2600)
+			"standard": 		(1, 10, 0.75, 20, 25)
+			"mediumrelease":	(1, 10, 1, 10, 350)
+			"longrelease":		(1, 10, 1, 10, 1100)
+			"pulse": 			(1, 10, .45, 25, 25)
+			"heavenly":			(1, 800, 1, 1, 1200)
+			"drawnout":			(1, 3000, 0.3, 1000, 2600)
 	------------------------------------------------
 	"""
 
 	################# YOUR CODE HERE ###################
-	
 
-
+	my_awesome_track = tracks[0]
 
 	####################################################

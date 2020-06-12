@@ -5,13 +5,16 @@ text file storing musical information in our designated musical notation format
 from songbuffer import SongBuffer
 from parse import parse_notes
 from track import convert_to_track
-from envelope import example_envelopes
+from envelope import Envelope, example_envelopes
 from config import DURATION_MULTIPLIER
 from songsettings import song_settings
 
-master = SongBuffer()  # in memory
 
 def generate_audio_file():
+
+	# The master buffer for the entire song
+	master = SongBuffer()
+
 	# a 'track' is a monophonic sequence of notes
 	# tracks is a list of individual tracks.
 	print("\nParsing composition...")
@@ -46,7 +49,7 @@ def generate_audio_file():
 
 def set_default_settings(tracks):
 	for i in range(len(tracks)):
-		tracks[i].envelope = example_envelopes["standard"]
+		tracks[i].envelope = Envelope(*example_envelopes["standard"])
 		tracks[i].echo = False
 		tracks[i].echo_delay = 200
 		tracks[i].echo_volume = 0.6

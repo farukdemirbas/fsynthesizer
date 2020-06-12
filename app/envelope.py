@@ -3,8 +3,7 @@ from audiobuffer import AudioBuffer
 
 
 class Envelope():
-	""" This class is a bit messy, but all we ever need to know is:
-
+	""" 
 	1) It knows how to apply itself to a Note object of any length.
 
 	2) The Envelope shuold be attached to the Note, BEFORE calling
@@ -31,7 +30,7 @@ class Envelope():
 	kind of why it is messy.
 	---
 	"""
-	
+
 	def __init__(self, attack_end, attack_time, decay_end,
 								decay_time, release_time=40):
 		self.attack_end = attack_end
@@ -105,12 +104,11 @@ class Envelope():
 
 		return body_applied + tail_applied
 
-
 example_envelopes = {
-	"standard": Envelope(1, 10, 0.75, 20, 25),
-	"mediumrelease": Envelope(1, 10, 1, 10, 350),
-	"longrelease": Envelope(1, 10, 1, 10, 1100),
-	"pulse": Envelope(1, 10, .45, 25, 25),
-	"heavenly": Envelope(1, 800, 1, 1, 1200),
-	"drawnout": Envelope(1, 3000, 0.3, 1000, 2600)
+	"standard": (1, 10, 0.75, 20, 25),
+	"mediumrelease": (1, 10, 1, 10, 350),
+	"longrelease": (1, 10, 1, 10, 1100),
+	"pulse": (1, 10, .45, 25, 25),
+	"heavenly": (1, 800, 1, 1, 1200),
+	"drawnout": (1, 3000, 0.3, 1000, 2600)
 }
