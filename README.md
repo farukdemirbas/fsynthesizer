@@ -1,6 +1,6 @@
 # fsynthesizer [v0.1]
 
-fsynthesizer is a console application that takes in a custom-format musical composition,
+fsynthesizer is a console application that takes in a user-made custom-format musical composition,
 synthesizes into musical form, applies rudimentary sound processing and generates a WAV file.  
 
 ---
